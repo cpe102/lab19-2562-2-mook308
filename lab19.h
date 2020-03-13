@@ -71,6 +71,59 @@ void Unit::newTurn(){
 //
 //
 
+int Unit::attack(Unit &target){
+	target.beAttacked(atk);
+	if(target.guard_on == true)return (atk-target.def)/3;
+	else return atk-target.def;
+
+}
+
+int Unit::beAttacked(int opatk){
+	int dmg = opatk -def;
+	if(dmg<0)dmg = 0;
+	hp = hp - dmg;
+	if(guard_on == true)return dmg/3;
+	else return dmg;
+}
+
+
+int Unit::heal(){
+	int hph = rand()%20+11;
+	hp = hp+hph;
+	if (hp>hpmax){
+		hp = hpmax;
+	}
+	return hph;
+}	
+
+
+void Unit::guard(){
+	guard_on = true;
+
+}
+
+
+bool Unit::isDead(){
+	if(hp <= 0)return true;
+	else return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void drawScene(char p_action,int p,char m_action,int m){
 	cout << "                                                       \n";
 	if(p_action == 'A'){
