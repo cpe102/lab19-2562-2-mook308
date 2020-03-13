@@ -93,7 +93,8 @@ int Unit::heal(){
 	if (hp>hpmax){
 		hp = hpmax;
 	}
-	return hph;
+	if (hph == hpmax)return 0;
+	else return hph;
 }	
 
 
@@ -107,19 +108,6 @@ bool Unit::isDead(){
 	if(hp <= 0)return true;
 	else return false;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
