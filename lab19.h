@@ -88,13 +88,18 @@ int Unit::beAttacked(int opatk){
 
 
 int Unit::heal(){
-	int hph = rand()%20+11;
-	hp = hp+hph;
-	if (hp>hpmax){
+	int hph = (rand()%20)+11;
+	if(hp == hpmax){
+		return 0;
+	}else if (hph >= (hpmax-hp)){
+		hph = hpmax - hp;
 		hp = hpmax;
+		return hph;
+	}else if (hp <= (hpmax-hph)){
+		hp = hp+hph;
+		return hph;
 	}
-	if (hph == hpmax)return 0;
-	else return hph;
+	
 }	
 
 
